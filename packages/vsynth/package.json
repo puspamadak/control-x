@@ -1,0 +1,17 @@
+{
+  "name": "@ce/vsynth",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Original WebGL2 visual instrument with gesture-driven browser water feedback.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./manifest": "./src/manifest.ts",
+    "./musical-manifest": "./src/musical-manifest.ts",
+    "./musical": "./src/musical.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json"
+  }
+}

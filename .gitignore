@@ -1,0 +1,43 @@
+# dependencies and build output
+node_modules
+dist/
+coverage/
+*.tsbuildinfo
+
+# secrets and local certificates (never commit)
+.env
+.env.*
+!.env.example
+.certs/
+.data/
+*.pem
+*.key
+*.p12
+*.pfx
+*.mobileprovision
+*.har
+*.heapsnapshot
+*.zip
+
+# New camera takes are private by default. Retain only the two synthetic emulator fixtures.
+/apps/quest/public/takes/*
+!/apps/quest/public/takes/take-2026-11-02T02-22-10/
+!/apps/quest/public/takes/take-2026-11-02T02-45-47/
+
+# internal planning notes (kept out of the public repo)
+/research/
+/notes/
+BRIEF.md
+AGENTS.md
+CODEX-HANDOFF.md
+
+# misc
+*.log
+.DS_Store
+
+# internal planning
+SPEC.md
+MORNING.md
+.claude/
+HANDOFF.md
+Meta hack video script.md
