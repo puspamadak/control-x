@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>ControlX · Quest</title>
+    <link rel="icon" href="data:," />
+  </head>
+  <body data-layout="launcher">
+    <div id="stage" aria-label="3D view"></div>
+    <main id="side">
+      <header class="top">
+        <a class="brand" href="./" aria-label="ControlX home"><span class="brand-mark" aria-hidden="true">✳</span>Control<span>Anything</span></a>
+        <div class="badges"><span class="platform">Meta Quest</span><span id="b-mode" class="badge" title="Model mode">…</span><span id="b-ws" class="badge" aria-live="polite">offline</span></div>
+      </header>
+
+      <section id="pair-card" class="card" hidden>
+        <p class="eyebrow">One-time connection</p><h2>Pair this headset</h2>
+        <div class="pair"><canvas id="pair-qr" width="140" height="140" aria-label="Pairing QR code"></canvas><div><div id="pair-code" class="code">———-———</div><p id="pair-msg" class="muted">Approve this headset on your Mac companion.</p></div></div>
+      </section>
+
+      <section class="enter-only">
+        <h1>Control<span>Anything</span></h1>
+        <p class="intro">Select your Mac. Ask Muse to wire your hands. Calibrate if needed, then play.</p>
+        <button id="btn-enter" class="primary enter-big" type="button" disabled>Enter AR</button>
+        <p id="xr-msg" class="small muted" role="status">Connecting your headset…</p>
+        <p class="small"><a href="./reviewer.html">No headset? Try the phone camera or laptop webcam demo →</a></p>
+        <p class="small"><a href="./hands.html">The same AR flow on a phone or laptop webcam →</a></p>
+        <p class="small muted">Turn your left palm toward your eyes and pinch for the wrist menu.</p>
+      </section>
+      <section id="approvals" class="card" hidden><h2>Waiting to join</h2><ul id="approval-list" class="list"></ul></section>
+      <div class="lab-only rec-show">
+        <button id="btn-prepare" type="button">Camera + mic</button>
+        <section class="card" aria-labelledby="recording-title"><h2 id="recording-title">Record a demonstration</h2><div class="row"><button id="btn-record" type="button">Record take</button><button id="btn-save" type="button" disabled>Save take</button><a href="/companion/tracking/" target="_blank" rel="noopener">Open Motion lab</a></div><p id="recording-status" class="small muted" role="status">No recording in progress.</p></section>
+      </div>
+      <details id="developer-tools" class="developer-tools lab-only"><summary>Diagnostics &amp; recording <span>For troubleshooting</span></summary><div class="diagnostic-grid">
+        <section class="card"><h2>Status</h2><dl id="status" class="kv"></dl></section>
+        <section class="card"><h2>Camera preview</h2><div class="frame-wrap"><canvas id="frame" width="320" height="240" aria-label="last scan frame with detections"></canvas></div><p id="frame-msg" class="small muted">No frame yet</p></section>
+        <section class="card"><h2>Replay &amp; diagnostics</h2><div class="row"><button id="btn-scan" type="button">Scan</button></div><div class="row replay-row"><input id="take-file" type="file" accept=".zip,.jsonl" aria-label="Replay file" /><select id="take-mode" aria-label="replay mode"><option value="playback">playback</option><option value="pipeline">pipeline (live server)</option></select></div><p class="small muted">Desktop: <a id="link-emulate" href="?emulate=1">emulator</a> · <a href="?emulate=1&amp;scan=fixture">fixture scan</a> · <a href="?emulate=1&amp;camera=sim">sim room</a> · <a href="?spike=camera">camera check</a></p></section>
+        <section class="card"><div class="row between"><h2>Activity</h2><button id="btn-repair" type="button" class="secondary small">Forget pairing</button></div><pre id="log" class="log"></pre></section>
+      </div><p class="small muted">Desktop shortcuts: <kbd>S</kbd> Find devices · <kbd>Enter</kbd> select · <kbd>Esc</kbd> release · <kbd>X</kbd> stop · <kbd>R</kbd> record · click to pinch · right-drag to look</p></details>
+      <footer><span>ControlX</span><span>Look. Ask. Interact.</span></footer>
+    </main>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>
