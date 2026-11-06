@@ -1,0 +1,14 @@
+{
+  "name": "device_card:ceiling-light",
+  "model": "muse-spark-1.3",
+  "recordedAt": "2026-11-01T21:51:29.515Z",
+  "latencyMs": 4258,
+  "usage": {
+    "promptTokens": 2247,
+    "completionTokens": 866,
+    "totalTokens": 3113,
+    "reasoningTokens": 733,
+    "cachedTokens": 0
+  },
+  "text": "{\"alternatives\":[],\"category\":\"lighting\",\"companion\":\"ir_blaster\",\"confidence\":0.4,\"evidence\":[\"round flush-mount ceiling fixture glowing warm yellow\",\"mounted centered on ceiling in whole room scene\",\"no brand text or markings visible in crop or scene\"],\"followUp\":[\"photograph IR remote control for this light\",\"close-up of light rim for brand marking\"],\"maker\":\"unknown\",\"model\":\"unknown\",\"name\":\"Ceiling Light\",\"notes\":\"Generic round LED flush-mount ceiling light with no legible branding; typically operated by IR remote.\",\"protocols\":[\"ir\"],\"requires\":[\"ir\"],\"visibleText\":[]}"
+}
