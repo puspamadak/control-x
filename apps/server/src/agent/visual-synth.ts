@@ -1,0 +1,45 @@
+import type { DeviceCardPayload, DeviceInfo } from '@ce/protocol';
+import { VISUAL_SYNTH_NAME } from '../devices/visualSynth';
+
+export const VIRTUAL_SCREEN_NOTE = 'virtual:visual-synth:';
+export const VIRTUAL_SCREEN_GUIDANCE = 'Mac visuals open. Set up control to play them with your hands.';
+/** One card for the Mac's visual synth, whichever companion instance hosts it (re-pairing rebinds it). */
+export const VISUAL_SYNTH_CARD_ID = 'visual-synth-mac';
+/** A renderer or companion that disappears for less than this keeps its setup and controls. */
+export const VISUAL_PRESENCE_GRACE_MS = 15_000;
+/** Waiting for the Mac's screen after a selection: ask again (and say what to do) after this... */
+export const VISUAL_REMIND_MS = 6_000;
+/** ...and give up (with a retry) after this. */
+export const VISUAL_WAIT_MS = 60_000;
+export const VISUAL_PAUSED_HINT = 'Controls paused. On the Mac, click Open visuals in ControlX and keep it in front; they resume by themselves.';
+
+/** What the on-device detector calls the Mac (or its screen). */
+export function isLaptopLabel(label = ''): boolean {
+  return /\b(laptop|computer|macbook|notebook|this mac|mac|monitor|tv|television|display|screen|visual[\s-]?synth)\b/i.test(label);
+}
+
+/** An advertised virtual output can be launched even while its renderer is closed. */
+export function visualSynthHosts(devices: DeviceInfo[]): DeviceInfo[] {
+  return devices.filter((device) => device.online && device.capabilities.includes('midi')
+    && (device.role === 'companion' || device.kind === 'sim')
+    && device.ports?.some((port) => port.id === 'ce-visual-synth' && port.kind === 'midi-out'));
+}
+
+/** Explicit selection binds this app's virtual output, never a physical synth with a similar name. */
+export function visualSynthCompanions(devices: DeviceInfo[]): DeviceInfo[] {
+  return visualSynthHosts(devices).filter((device) => device.ports?.some((port) => port.id === 'ce-visual-synth' && port.kind === 'midi-out' && port.state === 'connected'));
+}
+
+export function virtualScreenExecutor(card?: Pick<DeviceCardPayload, 'notes'>): string | undefined {
+  return card?.notes?.startsWith(VIRTUAL_SCREEN_NOTE) ? card.notes.slice(VIRTUAL_SCREEN_NOTE.length) || undefined : undefined;
+}
+
+export function visualSynthCard(executor: DeviceInfo): DeviceCardPayload {
+  const reviewer = /^(reviewer|hands)-software@/.test(executor.app ?? '');
+  return { cardId: reviewer ? `visual-synth-reviewer-${executor.deviceId}` : VISUAL_SYNTH_CARD_ID, name: VISUAL_SYNTH_NAME, maker: 'ControlX', model: 'Visual Synth', category: 'synthesizer',
+    confidence: 1, protocols: ['midi'], requires: ['midi'], source: executor.kind === 'sim' ? 'fixture' : 'live',
+    notes: `${VIRTUAL_SCREEN_NOTE}${executor.deviceId}`,
+    evidence: ['The built-in silent visual instrument on the Mac screen (authored in this repo, not identified).',
+      `${executor.name} advertises the ce-visual-synth output. This is not laptop playback.`,
+      'Screen placement is user-aimed. Each command is checked by the headset camera, or by the renderer\'s own report.'] };
+}

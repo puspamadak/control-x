@@ -1,0 +1,170 @@
+{
+  "title": "agent.step",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "v": {
+      "type": "number",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "ts": {
+      "type": "number"
+    },
+    "from": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "to": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "type": {
+      "type": "string",
+      "const": "agent.step"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "sentence": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "hint": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "retry",
+            "cancel",
+            "open-companion",
+            "pair-device",
+            "select-visual-synth"
+          ]
+        },
+        "stepId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "runId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "parentId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "cardId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "phase": {
+          "type": "string",
+          "enum": [
+            "capture",
+            "scan",
+            "identify",
+            "link",
+            "research",
+            "plan",
+            "drive",
+            "codegen",
+            "verify",
+            "forge",
+            "arm",
+            "deploy",
+            "ui",
+            "control",
+            "other"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "running",
+            "ok",
+            "fail"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "detail": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "evidence": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "proof",
+            "opinion"
+          ]
+        },
+        "model": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "effort": {
+          "type": "string",
+          "maxLength": 16
+        },
+        "latencyMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "live",
+            "fixture"
+          ]
+        },
+        "recordedFrom": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "startedAt": {
+          "type": "number"
+        },
+        "endedAt": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "stepId",
+        "phase",
+        "status",
+        "title"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "v",
+    "id",
+    "ts",
+    "from",
+    "type",
+    "payload"
+  ],
+  "additionalProperties": false
+}
