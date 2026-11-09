@@ -1,0 +1,166 @@
+{
+  "title": "exec.ack",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "v": {
+      "type": "number",
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "ts": {
+      "type": "number"
+    },
+    "from": {
+      "type": "string",
+      "maxLength": 128
+    },
+    "to": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "type": {
+      "type": "string",
+      "const": "exec.ack"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "execId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "ok": {
+          "type": "boolean"
+        },
+        "sentAt": {
+          "type": "number"
+        },
+        "detail": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "error": {
+          "type": "string",
+          "enum": [
+            "no_port",
+            "no_midi",
+            "no_ir",
+            "bad_args",
+            "rate_limited",
+            "unsupported",
+            "serial_offline",
+            "timeout",
+            "device_error",
+            "refused"
+          ]
+        },
+        "reply": {
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
+          }
+        },
+        "latencyMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "applied": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string",
+              "enum": [
+                "renderer",
+                "port",
+                "musical-synth"
+              ]
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "visible": {
+              "type": "boolean"
+            },
+            "frame": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "at": {
+              "type": "number"
+            },
+            "audio": {
+              "type": "object",
+              "properties": {
+                "unlocked": {
+                  "type": "boolean"
+                },
+                "muted": {
+                  "type": "boolean"
+                },
+                "rms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "peak": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "frequency": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 24000
+                },
+                "activeNote": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 127
+                }
+              },
+              "required": [
+                "unlocked",
+                "muted",
+                "rms",
+                "peak",
+                "frequency"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "source"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "execId",
+        "ok",
+        "sentAt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "v",
+    "id",
+    "ts",
+    "from",
+    "type",
+    "payload"
+  ],
+  "additionalProperties": false
+}
