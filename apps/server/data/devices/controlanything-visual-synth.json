@@ -1,0 +1,126 @@
+{
+  "id": "controlx-visual-synth",
+  "device": "ControlX Visual Synth",
+  "manufacturer": "ControlX",
+  "sense": "camera",
+  "firmwareNotes": "Silent original WebGL2 instrument on the paired Mac screen. No audio or notes. Its renderer publishes a capability manifest (packages/vsynth/src/manifest.ts): the CCs below on channel 1 (values 0-127) and program changes 0-3 (Flow, Rings, Prism, Water). CC21 switches to Water and sets ripple depth, so forward/back hand motion makes expanding ripple waves. Verification is visual: the headset camera, backed by the renderer's own receipt.",
+  "sources": [
+    {
+      "title": "this repo: original visual synth implementation",
+      "url": "packages/vsynth/src/state.ts",
+      "confidence": "implementation"
+    },
+    {
+      "title": "this repo: visual synth capability manifest",
+      "url": "packages/vsynth/src/manifest.ts",
+      "confidence": "implementation"
+    }
+  ],
+  "usb": {
+    "portNameHint": "ControlX Visual Synth",
+    "notes": "Virtual MIDI-style output in the paired companion or simulated room; no USB permission required."
+  },
+  "identity": {
+    "respondsToUniversalInquiry": true,
+    "manufacturerId": [
+      125
+    ],
+    "replyExample": "F0 7E 7F 06 02 7D 43 45 00 01 00 00 00 01 F7"
+  },
+  "channels": {
+    "receive": "Channel 1. CC values 0-127. Program change 0-2 selects Flow, Rings, Prism. CC21 selects Water ripples and controls ripple depth. CC120/121/123 or panic resets all parameters and animation phase."
+  },
+  "parameters": [
+    {
+      "name": "Warp",
+      "cc": 71,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Water ripples",
+      "cc": 21,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Zoom",
+      "cc": 74,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Speed",
+      "cc": 1,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Brightness",
+      "cc": 7,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Hue",
+      "cc": 10,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Saturation",
+      "cc": 11,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "linear"
+    },
+    {
+      "name": "Symmetry (1-8)",
+      "cc": 20,
+      "range": [
+        0,
+        127
+      ],
+      "curve": "step"
+    },
+    {
+      "name": "Pattern (program change 0-2)",
+      "cc": null,
+      "range": [
+        0,
+        2
+      ],
+      "curve": "step"
+    }
+  ],
+  "demo": {
+    "bestParameters": [
+      "CC 21 Water ripples",
+      "CC 71 Warp"
+    ],
+    "visualFeedback": "Camera compares the laptop screen's luma and colour before and after commands.",
+    "setup": [
+      "Keep the paired Mac companion visible. Try visual synth in Quest opens its visual display automatically."
+    ]
+  }
+}
