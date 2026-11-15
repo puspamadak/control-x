@@ -1,6 +1,6 @@
 # Live Quest debugging
 
-`npm run quest:live` mirrors the connected Quest to a local browser without reloading the XR app, forwarding input, capturing audio, or playing sound. It uses Android's compositor video output, not the app's camera preview, so it can show the room and AR interface together.
+`npm run quest:live` mirrors the connected Quest to a local browser without reloading the XR app, forwarding input, capturing audio, or playing sound. It uses Android's compositor video output, not the app's camera preview, so it can show the room and AR/VR interface together.
 
 ## Start
 

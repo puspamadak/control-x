@@ -9,7 +9,7 @@ This folder is for checking the work without a headset. It records what was obse
 - The server was in live model mode. The page shows a LIVE badge and `server … · live` (frame 00); a run without a key shows FIXTURE.
 - The scene is the Quest 3 **desktop emulator** (IWER) with the simulated room and simulated Mac. **These are not headset captures**, and no real room or person appears in them.
 - The ask was the script's default: *"Give me knobs for ripples, warp and zoom"*.
-- Frames 01–05 are cropped to the AR view. The emulator's control sidebar is removed.
+- Frames 01–05 are cropped to the AR/VR view. The emulator's control sidebar is removed.
 
 - The agent was **Meta's Muse Code** (`CE_AGENT_ENGINE=muse-code`) driving our device tools over MCP. Every model call was `muse-spark-1.3`. From the ask to the working knobs took about 30 s.
 
@@ -45,7 +45,7 @@ Each demo was asked on the headset (by voice, or a suggestion) from the MacBook'
 
 - **Touch the water.** "Touch the water with your finger": a hand program with no floating controls, ready in 31.6 s. The first fingertip touch found the laptop screen; the ripples followed the finger.
 - **Instagram Reels (a third-party app).** "Reels hand scroll", ready in 54.5 s. Muse opened Reels in Chrome on the Mac and tested the arrow keys (the reels changed during its own test), then hand flicks and its Next/Prev/Like buttons scrolled Reels.
-- **OP-1 Field over USB-MIDI.** Filter knobs plus an AR keyboard, and "Play the OP-1 Field with fingers" (36.7 s). Muse's test notes were confirmed on the OP-1.
+- **OP-1 Field over USB-MIDI.** Filter knobs plus an AR/VR keyboard, and "Play the OP-1 Field with fingers" (36.7 s). Muse's test notes were confirmed on the OP-1.
 - **DJI Osmo Mobile 4 over Bluetooth.** "Gimbal finger steering", ready in 30.0 s. The gimbal acknowledged 881 moves from Muse's code: 2 tests, then 879 while the hand steered it (889 acknowledgements in all, including stop and release).
 - **Buddy.** Muse Spark reactions in 5.1–5.7 s and Muse Image stickers in 7–13 s for a real mug.
 - **Physical-AI recording.** A 111.6 s take: 3,247 head + 25-joint hand frames at 30 Hz, synced with the Quest's video recording.

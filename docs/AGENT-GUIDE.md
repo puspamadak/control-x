@@ -2,14 +2,14 @@
 
 Read this before you change code in this repository. It lists what the project is, how to run and test it, the rules that must not break, and the mistakes that have already cost time.
 
-ControlX is a Meta Quest 3 passthrough WebXR app plus a Node server on a Mac. The wearer tags a real device in AR and asks what they want to do with it. A **Muse agent** in the server writes, deploys and tests a connector program for that device, then returns AR controls and, if asked, a hand program. The project's job is the AR interface and the server. **The connection code is written by Muse at runtime, after the wearer asks.** For reviewers, the shorter guide is [QUICKSTART.md](QUICKSTART.md).
+ControlX is a Meta Quest 3 passthrough WebXR app plus a Node server on a Mac. The wearer tags a real device in AR/VR and asks what they want to do with it. A **Muse agent** in the server writes, deploys and tests a connector program for that device, then returns AR/VR controls and, if asked, a hand program. The project's job is the AR/VR interface and the server. **The connection code is written by Muse at runtime, after the wearer asks.** For reviewers, the shorter guide is [QUICKSTART.md](QUICKSTART.md).
 
 ## Repo map
 
 | Path | What it is |
 |---|---|
 | `apps/server` | Node (Express + `ws`), run from TypeScript source with `tsx`. HTTP on 8787, HTTPS on 8443. Meta model adapters (`src/muse/`), the WebSocket hub and pairing (`src/hub.ts`, `src/pairing/`), SAM scanning (`src/scan/`), the Muse agent and connector host (`src/agent/`), device bridges (`src/devices/`, including the DJI Osmo bridge in `src/devices/osmo/`), Buddy (`src/buddy/`). Recorded replies for FIXTURE mode are in `fixtures/recorded/`. |
-| `apps/quest` | The headset app: WebXR, three.js, Vite. `src/app/app.ts` is the main flow; `src/hud/v2/` the AR interface; `src/wiring/` asks, the hand-program Worker and the code card; `src/gestures/` hand signals; `src/buddy/` Buddy; `src/hands/` and `hands.html` the webcam/phone page. Built into `apps/quest/dist`, served at `/quest/`. |
+| `apps/quest` | The headset app: WebXR, three.js, Vite. `src/app/app.ts` is the main flow; `src/hud/v2/` the AR/VR interface; `src/wiring/` asks, the hand-program Worker and the code card; `src/gestures/` hand signals; `src/buddy/` Buddy; `src/hands/` and `hands.html` the webcam/phone page. Built into `apps/quest/dist`, served at `/quest/`. |
 | `apps/companion` | The Mac page in Chrome (`/companion/`): pairing, Web MIDI and Web Serial executor, the full-screen visual synth, the musical synth, Motion lab (`/companion/tracking/`). |
 | `apps/sim` | A simulated room and Mac for the emulator and the e2e checks (`/sim/`). |
 | `apps/iphone`, `apps/devterm`, `firmware/cardputer` | Other clients that pair with the server. Not on the main demo path. |
@@ -62,7 +62,7 @@ CE_QUEST_DIST=/tmp/ce-stage-quest PORT=8798 node scripts/e2e-muse-agent.mjs
 | Mode | When | What happens |
 |---|---|---|
 | **LIVE** | `MODEL_API_KEY` is set in `.env` (or `MODEL_MODE=live`) | Real Meta model calls. Each is logged at `GET /api/muse/calls` and as a `[muse] …` line in the server log. |
-| **FIXTURE** | No key, or `MODEL_MODE=fixture` | No model is called. SAM and identification replies replay from `apps/server/fixtures/recorded/`; the agent's tool calls come from a scripted run (`fixtureScript()` in `muse-agent.ts`). The tools, the connector process, MIDI routing, the AR controls and Stop still run for real. Everything is labelled **FIXTURE**. |
+| **FIXTURE** | No key, or `MODEL_MODE=fixture` | No model is called. SAM and identification replies replay from `apps/server/fixtures/recorded/`; the agent's tool calls come from a scripted run (`fixtureScript()` in `muse-agent.ts`). The tools, the connector process, MIDI routing, the AR/VR controls and Stop still run for real. Everything is labelled **FIXTURE**. |
 | **TEMPLATE** | Only in the older `CE_AGENT=0` flow, when Muse could not finish | Hand-written code, labelled *Template: no Meta model wrote this*. Never the default. |
 
 `MUSE_RECORD=1` saves live replies for replay. They can contain camera crops; inspect them before you commit anything.
@@ -129,14 +129,14 @@ The agent's own shell refuses commands that mention 8787, 8443 or 8799.
    | `say` | One progress line in AR; the Mac speaks it with OS speech. |
    | `bash` | zsh in the workspace with a reduced environment. 20 s default, 60 s maximum, output clipped. A deny list blocks system-level and destructive commands, `kill`, the live ports and secret files. Background processes are killed when the shell exits. |
    | `read_file` | The workspace, or this repo (not `.data`, `.env`, `.git` or key files). |
-   | `write_file`, `edit_file` | The workspace only. Written files stream into the AR code card. |
+   | `write_file`, `edit_file` | The workspace only. Written files stream into the AR/VR code card. |
    | `open_visuals` | Asks the paired Mac to open the visual synth. |
    | `deploy_connector` | Starts `node <entry>` for the selected card and declares its actions (`set` with min/max, `trigger`, `toggle`; at most 16). Returns start-up output or the crash. |
-   | `test_action` | Sends one value to an action, as an AR control would, and returns the connector's log and the device acknowledgements (✓/✗). |
+   | `test_action` | Sends one value to an action, as an AR/VR control would, and returns the connector's log and the device acknowledgements (✓/✗). |
    | `finish` | Returns the result. The server checks it first (step 5). |
 
 4. **The workspace and the connector runtime.** The workspace is `CE_AGENT_WORKSPACE`, or `CE_DATA_DIR/muse-agent` (normally `apps/server/.data/muse-agent`, gitignored). It holds `connectors/<device>/index.mjs`, `NOTES.md` (the agent's memory) and `ce.mjs`. The server rewrites `ce.mjs` before each ask from `CONNECTOR_SDK` in `apps/server/src/agent/connector-host.ts`. A connector imports from it:
-   - `onSet(fn)`, `onTrigger(fn)`, `onStop(fn)`: AR controls and hand programs arrive here;
+   - `onSet(fn)`, `onTrigger(fn)`, `onStop(fn)`: AR/VR controls and hand programs arrive here;
    - `midi.cc / note / program / allNotesOff`: out through the paired Mac companion's Web MIDI;
    - `gimbal.pan / tilt / nudge / recenter / stop`: out through the Osmo bridge, which clamps range and speed;
    - `mac.open / activate / key`: the Mac itself (key presses need Accessibility permission);

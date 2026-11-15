@@ -6,7 +6,7 @@ This is a procedure and evidence ledger, not a blanket pass claim. The current r
 
 | Path | Actual evidence |
 |---|---|
-| Tag → ask → deployed connector → AR knobs → acked CC21 → cancel/Stop | Fixture emulator, `scripts/e2e-muse-agent.mjs`. |
+| Tag → ask → deployed connector → AR/VR knobs → acked CC21 → cancel/Stop | Fixture emulator, `scripts/e2e-muse-agent.mjs`. |
 | Visual synth controller and water-touch program | User confirmed working on real Quest with live Muse; generation about 45s. |
 | Browser musical synth Air Theremin | Real Quest, live generation about 37s. |
 | OP-1 notes and CCs | Real Quest and physical instrument, after the user enabled MIDI receive on the OP-1. |
@@ -27,7 +27,7 @@ Do not combine unrelated probe times, screenshots or fixture receipts into one c
 
 | Step | Action | Required observation |
 |---|---|---|
-| A1 | Enter AR in Annotate; choose Electronics / Objects / All | SAM outlines objects. Camera/hands work, no competing tab. Measure current Annotate performance. |
+| A1 | Enter AR/VR in Annotate; choose Electronics / Objects / All | SAM outlines objects. Camera/hands work, no competing tab. Measure current Annotate performance. |
 | A2 | Pinch an object and wait | It tags/identifies and stays in Annotate. No default synth redirect, setup, commands or prefetch. |
 | A3 | Deliberately choose Control and the tagged object | Ask Muse appears immediately. Missing companion/transport has a clear Connect Mac or device instruction. |
 | A4 | Speak/choose what the hands should do | Exact request stays on that object. Muse's actual tool/code/progress streams; no interaction exists before the ask. |
@@ -52,7 +52,7 @@ Retain build, headset/browser version, selected object, request/wiring IDs, exac
 
 **Buddy:** greet/pet/high-five and show an object intentionally. Capture should present an accurate preview with retake/send; holding up a hand alone must not silently take a picture. Show a virtual object too and check its animation/reaction. Browser/OS speech is allowed; no foreign voice model.
 
-**Reviewer without headset:** use the [mobile/laptop demo](REVIEWER-DEMO.md), with opt-in camera and touch/mouse. Record which device/browser and whether native immersive AR or inline camera fallback was used. An inline camera overlay is not world-tracked Quest passthrough or native hand tracking. Test denied permission, retry, retake, Stop and camera-off.
+**Reviewer without headset:** use the [mobile/laptop demo](REVIEWER-DEMO.md), with opt-in camera and touch/mouse. Record which device/browser and whether native immersive AR/VR or inline camera fallback was used. An inline camera overlay is not world-tracked Quest passthrough or native hand tracking. Test denied permission, retry, retake, Stop and camera-off.
 
 ## Software checks on staging
 

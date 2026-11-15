@@ -23,4 +23,4 @@ Small direct Bluetooth pan/tilt/recenter commands moved the real OM 4 on Nov 4. 
 
 Use `CE_OSMO=mock` and a private fixture directory/port for automation; never use :8787/:8443/:8799. The mock decodes the same rotation packets and reports explicitly simulated positions. Fake MIDI and emulator receipts establish software behavior, not sound or movement on a device.
 
-The Mac **Details → Muse connectors** panel exposes current process/actions/logs and Stop. **Connector Workshop** is a separate patch-review development tool, not the default runtime hand-mapping lane. Do not stop/restart the live server, reload the headset in AR or replace live dist while the wearer is testing.
+The Mac **Details → Muse connectors** panel exposes current process/actions/logs and Stop. **Connector Workshop** is a separate patch-review development tool, not the default runtime hand-mapping lane. Do not stop/restart the live server, reload the headset in AR/VR or replace live dist while the wearer is testing.

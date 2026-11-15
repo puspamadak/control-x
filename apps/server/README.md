@@ -1,7 +1,7 @@
 # ControlX server (the "malleable server")
 
 Node 22.12+ / TypeScript (developed on Node 26). One process on the Mac: the WebSocket hub every client pairs with, the Meta model
-adapters, and the **Muse coding agent**: it writes, deploys and tests device connectors after the user asks, then returns generated AR instruments and optional hand programs.
+adapters, and the **Muse coding agent**: it writes, deploys and tests device connectors after the user asks, then returns generated AR/VR instruments and optional hand programs.
 
 ```
 npm run dev            # server + companion + Quest in watch mode (http://localhost:8787, https://<lan-ip>:8443)
@@ -16,7 +16,7 @@ MUSE_RECORD=1 npx tsx apps/server/scripts/brain-live.ts [frame.jpg] [--pick synt
 
 **Ask before interacting.** In the default agent flow, choose Control and ask Muse immediately. Muse Spark uses file, terminal, deploy and test tools to create a Node connector on the Mac. `finish` returns a validated 3D instrument and/or a sandboxed hand program. No connector or hand mapping is pre-wired. Stop retires the connector; a new ask starts a new request. See [the current architecture](../../docs/ARCHITECTURE.md) and [instrument format](../../docs/GENERATED-INSTRUMENTS.md).
 
-**No headset required.** `/quest/reviewer.html` offers webcam/phone capture, Buddy and the same Muse connector flow with browser software instruments. It requests no hardware permissions. Native mobile AR is feature-detected; other browsers use the honest camera/touch fallback. See [the reviewer guide](../../docs/REVIEWER-DEMO.md).
+**No headset required.** `/quest/reviewer.html` offers webcam/phone capture, Buddy and the same Muse connector flow with browser software instruments. It requests no hardware permissions. Native mobile AR/VR is feature-detected; other browsers use the honest camera/touch fallback. See [the reviewer guide](../../docs/REVIEWER-DEMO.md).
 
 **Agent engine.** The built-in loop (`muse-agent.ts`) is the default. `CE_AGENT_ENGINE=muse-code` is an opt-in engine where Meta's Muse Code CLI (`muse exec`, `muse-spark-1.3`) runs the agent loop and calls the device tools (`say`, `open_visuals`, `deploy_connector`, `test_action`, `finish`) over a loopback MCP server with a per-run token (`muse-code-engine.ts`). With no key, no Muse Code binary or in fixture mode it falls back to the built-in loop. `GET /api/agent/connectors` reports the engine that ran.
 

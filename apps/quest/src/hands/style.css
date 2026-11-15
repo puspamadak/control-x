@@ -40,7 +40,7 @@ button:disabled { opacity: .4; cursor: default; }
 button.danger { color: #ffb4a8; }
 button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #9fdad3; outline-offset: 3px; }
 
-/* --- the AR view --------------------------------------------------------------------------------------------- */
+/* --- the AR/VR view --------------------------------------------------------------------------------------------- */
 #stage { position: fixed; inset: 0; }
 #stage canvas.hands-canvas { display: block; width: 100%; height: 100%; }
 #overlay-host { position: fixed; inset: 0; touch-action: none; cursor: crosshair; z-index: 1; }
@@ -51,7 +51,7 @@ canvas.ar-overlay { position: absolute; inset: 0; width: 100%; height: 100%; poi
 .calib-box { position: absolute; border: 2px dashed #ffffffcc; border-radius: 22px; box-shadow: 0 0 0 9999px #0007; display: flex; justify-content: center; }
 .calib-box span { margin-top: -34px; font-size: 13px; font-weight: 600; background: #000a; padding: 6px 12px; border-radius: 30px; white-space: nowrap; }
 
-/* --- Start AR (the one tap the camera permission needs) ------------------------------------------------------ */
+/* --- Start AR/VR (the one tap the camera permission needs) ------------------------------------------------------ */
 .start { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px;
   background: radial-gradient(ellipse at 30% 20%, #1b2340 0%, #07080d 60%); }
 body:not(.start-open) .start { display: none; }

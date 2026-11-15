@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><script>/* AR first, like the Quest: this page's Buddy-first flow stays available with ?buddy=1 */ if (!/[?&]buddy=1(&|$)/.test(location.search)) location.replace('./hands.html' + location.search);</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="dark"><title>ControlX · Camera demo</title><link rel="icon" href="data:,"></head>
+<head><meta charset="utf-8"><script>/* AR/VR first, like the Quest: this page's Buddy-first flow stays available with ?buddy=1 */ if (!/[?&]buddy=1(&|$)/.test(location.search)) location.replace('./hands.html' + location.search);</script><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="dark"><title>ControlX · Camera demo</title><link rel="icon" href="data:,"></head>
 <body>
 <header class="top"><a href="./" class="brand">✳ ControlX</a><span id="mode" class="badge">Camera + touch demo</span><div class="master"><label for="volume">Sound</label><input id="volume" type="range" min="0" max="100" value="35" aria-label="Master volume"><button id="mute" aria-pressed="false">Mute</button></div></header>
 <main>
@@ -23,7 +23,7 @@
       <canvas id="visual" width="640" height="360" hidden aria-label="Live visual synth"></canvas><canvas id="meter" width="640" height="120" hidden aria-label="Tone visualization driven by the software audio analyser"></canvas>
       <div id="controls" aria-label="Muse generated controls"></div><p id="receipt" class="hint" role="status"></p>
       <details><summary>Muse's code and progress</summary><pre id="code">Your requested connector will appear here.</pre></details>
-      <p class="hint">This camera mode uses touch and mouse. It has no headset hand tracking or real-world anchoring. Native WebXR AR is offered only when your browser supports it.</p>
+      <p class="hint">This camera mode uses touch and mouse. It has no headset hand tracking or real-world anchoring. Native WebXR AR/VR is offered only when your browser supports it.</p>
     </section>
   </div>
   <footer><a href="./">Quest headset experience</a><a href="./hands.html">AR-first webcam / phone demo</a><span id="model-status">Checking server…</span><a href="./gallery.html">3D control gallery</a></footer>

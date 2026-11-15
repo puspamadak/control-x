@@ -12,7 +12,7 @@ Unpaired, it is one card: a QR code, the pairing code, its expiry and *Waiting f
 
 The sidebar keeps the current model, connection state, and Stop all available. The product display name lives in `src/ui/product.ts`. Dark tokens live in `src/tokens.css`; the system font is preferred, with locally served Inter as a fallback. Code, IDs, pairing codes, and model metrics use the monospace stack. Reduced-motion preferences disable transitions and progress animation.
 
-Pair a fresh browser with Quest 3 by looking at the QR code from the headset in AR (the server reads it from the camera frame), or type the code. Codes refresh automatically. A saved identity survives reloads. A pending pairing request from another client shows an Approve prompt; clear stale requests before recording.
+Pair a fresh browser with Quest 3 by looking at the QR code from the headset in AR/VR (the server reads it from the camera frame), or type the code. Codes refresh automatically. A saved identity survives reloads. A pending pairing request from another client shows an Approve prompt; clear stale requests before recording.
 
 Pairing does not request USB MIDI permission or start synth setup. Device-specific MIDI guidance appears only after an explicit synth setup request; **Allow USB MIDI** and the manual Connections actions retain their browser permission flows. Previously granted bridges reconnect only in the executing tab; other tabs show standby. Microphone capture feeds a zero-gain output. Stop all uses the existing protocol command, and Now’s Stop cancels the matching active setup run.
 

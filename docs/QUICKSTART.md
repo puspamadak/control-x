@@ -25,7 +25,7 @@ npm run demo:sim
 
 1. Open **`http://localhost:8787/sim/`** in Chrome. This simulated room stands in for your Mac. It pairs itself, and the laptop on its desk runs the visual synth.
 2. Open **`http://localhost:8787/quest/?emulate=1&camera=sim&mic=0`** in a second tab. This is the Quest app in a desktop headset emulator. In the emulator, a click is a pinch, right-drag looks around, and W/A/D/Q/E move.
-3. Choose **Enter AR (emulated)**. You start in **Annotate**: outlines from SAM appear around objects in the room.
+3. Choose **Enter AR/VR (emulated)**. You start in **Annotate**: outlines from SAM appear around objects in the room.
 4. **Click the laptop's outline** (it is labelled *ControlX Visual Synth*). This tags it. You stay in Annotate; nothing is wired yet.
 5. Press **`M`** to switch to **Control** (or choose *Control* in the wrist menu at the right). Click the laptop again to open its card.
 6. On the card, choose **Give me knobs for this**.
@@ -37,7 +37,7 @@ Other keys in the emulator: `G` opens the visual synth demo, `B` opens Buddy, `1
 
 Skip the **Swipe my hand to scroll Instagram Reels** suggestion here unless you want it. It is not simulated: it opens Instagram in Google Chrome and presses keys on the Mac that runs the server.
 
-**What FIXTURE means.** Without an API key, no AI model is called. SAM outlines, device names and the agent's tool calls are recorded or scripted replays, and every card says **FIXTURE**. The connector process, the MIDI path to the visual synth, the AR controls and Stop are real code running on your machine. A FIXTURE run shows the integration; it does not show live model quality.
+**What FIXTURE means.** Without an API key, no AI model is called. SAM outlines, device names and the agent's tool calls are recorded or scripted replays, and every card says **FIXTURE**. The connector process, the MIDI path to the visual synth, the AR/VR controls and Stop are real code running on your machine. A FIXTURE run shows the integration; it does not show live model quality.
 
 Two pages show what happened, from the same machine:
 - **`http://localhost:8787/api/muse/calls`**: every model call. In FIXTURE mode it says `"mode": "fixture"` and each entry has `"model": "fixture"`: no model was called.
@@ -125,11 +125,11 @@ If the card says the Mac companion is needed, choose **Connect Mac** and look at
 
 ### Record hand and head poses
 
-Open **`http://localhost:8787/quest/?rec=1`**. Choose **Record take** before **Enter AR**, start the Quest's own video recorder (Meta button → Camera → Record video), do the demo, then exit AR to finish. Poses are recorded at up to 30 Hz (head plus 25 joints per hand). A take holds about 100 seconds with both hands tracked; the take saves automatically if it reaches the limit. **Save take** downloads a ZIP and also sends the take to the Mac, which keeps it in the server's data folder. Open the ZIP in **Motion lab** on the Mac at `http://localhost:8787/companion/tracking/`.
+Open **`http://localhost:8787/quest/?rec=1`**. Choose **Record take** before **Enter AR**, start the Quest's own video recorder (Meta button → Camera → Record video), do the demo, then exit AR/VR to finish. Poses are recorded at up to 30 Hz (head plus 25 joints per hand). A take holds about 100 seconds with both hands tracked; the take saves automatically if it reaches the limit. **Save take** downloads a ZIP and also sends the take to the Mac, which keeps it in the server's data folder. Open the ZIP in **Motion lab** on the Mac at `http://localhost:8787/companion/tracking/`.
 
 ## D. No headset, with a camera
 
-Open **`http://localhost:8787/quest/hands.html`** with the server from A or B running. It is the same golden path, AR view first:
+Open **`http://localhost:8787/quest/hands.html`** with the server from A or B running. It is the same golden path, AR/VR view first:
 
 1. **Start AR**. A laptop shows the webcam. Android Chrome starts WebXR AR. iPhone Safari uses the rear camera full screen and says it has no WebXR AR.
 2. In **Annotate**, SAM outlines objects in the camera view. Tag one: tap it on a phone; on a webcam, hold your hand over it until the ring fills, or click it.
@@ -155,7 +155,7 @@ Webcam hand tracking is classic computer vision (skin colour, background learnin
 | Hand-program and 3D-scene checks | `apps/server/src/agent/wire-check.ts`, `apps/server/src/agent/scene-check.ts` |
 | Generated instrument UI | `apps/server/src/agent/instrument-ui.ts`, `packages/gen3d/`, `apps/quest/src/gen3d/` |
 | Headset app: modes, keys, golden path | `apps/quest/src/app/app.ts` |
-| Device card, wrist menu, AR panels | `apps/quest/src/hud/v2/` (`device-card.ts`, `wrist-palette.ts`, `hand-dock.ts`, `instrument-panel.ts`) |
+| Device card, wrist menu, AR/VR panels | `apps/quest/src/hud/v2/` (`device-card.ts`, `wrist-palette.ts`, `hand-dock.ts`, `instrument-panel.ts`) |
 | Asks, suggestions, hand-program Worker, code card | `apps/quest/src/wiring/` (`controller.ts`, `runtime.ts`, `scene-runtime.ts`, `code-card.ts`) |
 | Hand signals and screen touch | `apps/quest/src/gestures/` |
 | Buddy | `apps/quest/src/buddy/`, `apps/server/src/buddy/` |

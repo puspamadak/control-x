@@ -21,7 +21,7 @@ Quest camera / WebXR poses → SAM outlines → Annotate pinch/tag
 Explicit Control + ask → wire.request → Muse Spark tool loop on Mac
 Muse → workspace files → deploy_connector → Node connector process
 Muse → test_action → actual executor acknowledgements → finish
-wire.ready → generated AR instrument / fallback controls + optional hand program
+wire.ready → generated AR/VR instrument / fallback controls + optional hand program
 AR widgets or Quest Worker → control.event wire:<action> → current connector
 Connector JSON lines → MIDI / gimbal bridge → exec.ack → logs
 Stop → revoke wiring + queued outputs + retire connector
@@ -52,7 +52,7 @@ A screen-touch program runs at once, with no setup step: the screen plane is gue
 
 ## Stop, sound and evidence
 
-**Stop Muse** cancels generation from the selected card. Both palms stop the current wiring and connector; the selected object remains available for another ask. Wrist **Stop all** performs the full emergency stop. Disconnect, superseded session and hidden XR must not resume an old program. Keep one Quest tab and reload only outside AR with the wearer's approval.
+**Stop Muse** cancels generation from the selected card. Both palms stop the current wiring and connector; the selected object remains available for another ask. Wrist **Stop all** performs the full emergency stop. Disconnect, superseded session and hidden XR must not resume an old program. Keep one Quest tab and reload only outside AR/VR with the wearer's approval.
 
 Sound is on in demo startup: `CE_DEMO=1 CE_OSMO=web npm start`, without `CE_MAC_SILENT`. Browser audio unlocks after a user gesture. The shared master volume/mute covers browser/UI/water sounds and OS/browser speech. Muted automated runs are allowed. macOS `say`, Web Speech, WebXR tracking, Web MIDI and Web Bluetooth are OS/browser features, not model calls. Every runtime AI model remains Meta: SAM 3.1, Muse Spark, Muse Image, Muse Voice Transcribe and guarded Muse Wonder in applicable older paths.
 

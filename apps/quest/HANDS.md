@@ -15,7 +15,7 @@ a target to see its hover highlight, then pinch to select it.
 3. Move a hand outside the tracking area and bring it back. Its dot must disappear
    while its index pose is missing, then recover. Try a brief occlusion during a
    pinch; it must not create a fresh pinch or leave a permanently held selection.
-4. Exit AR and enter it again. Repeat both hands' pinches and the palm gesture.
+4. Exit AR/VR and enter it again. Repeat both hands' pinches and the palm gesture.
    Select counts must respond in the new session without duplicate events.
 
 With the orchestrator's existing DevTools connection on localhost:9222, run these

@@ -1,10 +1,10 @@
-# AR without a headset: webcam and phone
+# AR/VR without a headset: webcam and phone
 
 Open **`/quest/hands.html`** on the ControlX server, for example `http://localhost:8787/quest/hands.html` on the Mac that runs it. Phones need HTTPS for the camera: use `https://<mac>:8443/quest/hands.html` with a certificate the phone trusts. The Quest entry page links here. `reviewer.html` now opens this page too; add `?buddy=1` for its Buddy-first flow.
 
-The page follows the Quest's golden path, AR view first.
+The page follows the Quest's golden path, AR/VR view first.
 
-1. **Start AR** is the only tap before the AR view; the camera permission needs it. What you get depends on the device:
+1. **Start AR** is the only tap before the AR/VR view; the camera permission needs it. What you get depends on the device:
    - **Android Chrome** opens a WebXR `immersive-ar` session, with the camera passthrough and the page in a DOM overlay.
    - **iPhone Safari** has no WebXR AR, and the page says so. It uses the rear camera full screen as the passthrough.
    - **A laptop** shows the mirrored webcam full screen.
@@ -56,14 +56,14 @@ On a phone, a touching finger is a hand, and touching reads as a closed hand.
 - touching hands, which merge into one blob;
 - a hand held perfectly still, which fades until it moves.
 
-## WebXR AR on Android
+## WebXR AR/VR on Android
 
-SAM needs camera frames inside the AR session. The page asks for WebXR raw camera access (`camera-access`) and reads a small copy of the AR camera image for each scan. If the browser does not offer it, the page says so and the camera view is the way to annotate. Webcam hand tracking does not run in AR; touch drives the hands there.
+SAM needs camera frames inside the AR/VR session. The page asks for WebXR raw camera access (`camera-access`) and reads a small copy of the AR/VR camera image for each scan. If the browser does not offer it, the page says so and the camera view is the way to annotate. Webcam hand tracking does not run in AR; touch drives the hands there.
 
 ## Verification
 
 `CE_QUEST_DIST=<staged bundle> research/e2e-lock.sh node scripts/e2e-hands-parity.mjs` starts its own FIXTURE server on port 8796 and the sim Mac. The fake camera is the sim room image with synthetic hands drawn over it, so the FIXTURE SAM outlines are its ground truth. The check walks the golden path on a laptop, and on a phone in both the camera view and emulated WebXR (IWER). It writes `research/screens/2026-11-05-hands-parity/verification.json` and screenshots. It does **not** establish:
 
 - tracking on a real webcam or real skin;
-- real phones or native Android AR (including `camera-access`);
+- real phones or native Android AR/VR (including `camera-access`);
 - a live Muse run.

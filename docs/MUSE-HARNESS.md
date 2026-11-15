@@ -8,7 +8,7 @@ Muse receives the selected observation (with timestamp), companion MIDI outputs,
 
 | Tool | Effect |
 |---|---|
-| `say` | Short progress line in AR and optional macOS system speech. |
+| `say` | Short progress line in AR/VR and optional macOS system speech. |
 | `bash` | Shell command in the workspace; output/time bounded and dangerous commands denied. This is real local coding access, not an OS sandbox. |
 | `read_file`, `write_file`, `edit_file` | Inspect allowed project/workspace files and edit connector files in the workspace. |
 | `open_visuals` | Ask the paired Mac to open the explicit visual instrument. |
@@ -20,7 +20,7 @@ Default limits: 24 turns, 40 tools, five minutes (`CE_AGENT_BUDGET_MS`). Every r
 
 ## Muse Code engine (opt-in)
 
-`CE_AGENT_ENGINE=muse-code` hands the whole loop to Meta's **Muse Code** CLI (`muse exec`, Meta provider, `muse-spark-1.3`), implemented in `apps/server/src/agent/muse-code-engine.ts`. Muse Code uses its own shell and file tools in the same workspace and reaches `say`, `open_visuals`, `deploy_connector`, `test_action` and `finish` through a loopback MCP server with a per-run bearer token, so those calls get the same checks and result as the built-in loop. Its commands and files stream into the AR code card. With no key, no Muse Code binary, in fixture mode, or if Muse Code stops before calling a device tool, the built-in loop answers the same request. `GET /api/agent/connectors` reports the engine that ran. A live emulator run on Nov 5 went from the ask to working knobs in about 30 s, with every model call `muse-spark-1.3`; see [the evidence frames](evidence/README.md).
+`CE_AGENT_ENGINE=muse-code` hands the whole loop to Meta's **Muse Code** CLI (`muse exec`, Meta provider, `muse-spark-1.3`), implemented in `apps/server/src/agent/muse-code-engine.ts`. Muse Code uses its own shell and file tools in the same workspace and reaches `say`, `open_visuals`, `deploy_connector`, `test_action` and `finish` through a loopback MCP server with a per-run bearer token, so those calls get the same checks and result as the built-in loop. Its commands and files stream into the AR/VR code card. With no key, no Muse Code binary, in fixture mode, or if Muse Code stops before calling a device tool, the built-in loop answers the same request. `GET /api/agent/connectors` reports the engine that ran. A live emulator run on Nov 5 went from the ask to working knobs in about 30 s, with every model call `muse-spark-1.3`; see [the evidence frames](evidence/README.md).
 
 ## Connector and hand-program hosts
 
