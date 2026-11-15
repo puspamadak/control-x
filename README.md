@@ -7,7 +7,7 @@ Pinch a device in your Quest 3 passthrough and ask what you want to do with it. 
 How it works in one line: Meta **SAM 3.1** outlines the objects around you; you select one and ask (by voice or a suggestion); the **Muse agent** (Muse Spark with a real terminal, files and device tools on the Mac) writes a connector, runs it, tests it on the device and designs the AR instrument; you watch its code stream in AR and then play. It is meant for any device your laptop can reach (USB, MIDI, serial, Bluetooth or the network); nothing is device-specific. Demonstrated with the built-in visual synth, a third-party app (Instagram Reels in Chrome), a Teenage Engineering OP-1 Field over USB-MIDI and a DJI Osmo Mobile 4 over Bluetooth, plus a virtual pet and a hand-pose recorder for physical-AI data.
 
 <!-- VIDEO_URL -->
-**▶ Demo and explanation video:**
+**▶ Demo and explanation video (2:20):** https://youtu.be/fU5ln3GybYE
 
 Built for the **Meta Global AI Developer Hackathon** (Indie Developer track, *Push the Frontier*). The name nods to Meta's *Segment Anything*; this is an independent project, not a Meta product.
 
