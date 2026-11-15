@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ControlX Visual Synth</title>
+  </head>
+  <body>
+    <canvas id="visuals" aria-label="Silent visual synth, controlled by ControlX"></canvas>
+    <div id="caption"><span>ControlX Visual Synth</span>
+      <output id="last-change" aria-live="polite">Visuals open · Hand control is not enabled yet</output>
+      <p id="setup-guide">In your headset, pinch this Mac to set it up. Hold your left fist, then raise your right hand for Warp and push or pull it for ripples. This instrument is silent.</p>
+    </div>
+    <script type="module" src="/src/vsynth/main.ts"></script>
+  </body>
+</html>
