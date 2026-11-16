@@ -11,6 +11,9 @@ How it works in one line: Meta **SAM 3.1** outlines the objects around you; you 
 
 Built for the **Meta Global AI Developer Hackathon** (Indie Developer track, *Push the Frontier*). The name nods to Meta's *Segment Anything*; this is an independent project, not a Meta product.
 
+## Architecture diagram
+![Architecture](docs/architecture.svg)
+
 ## Run it in 3 commands (no headset, no key)
 
 ```sh
