@@ -9,6 +9,8 @@ How it works in one line: Meta **SAM 3.1** outlines the objects around you; you 
 <!-- VIDEO_URL -->
 **▶ Demo and explanation video (2:20):** https://youtu.be/fU5ln3GybYE
 
+![Poster](docs/hero.png)
+
 Built for the **Meta Global AI Developer Hackathon** (Indie Developer track, *Push the Frontier*). The name nods to Meta's *Segment Anything*; this is an independent project, not a Meta product.
 
 ## Architecture diagram
