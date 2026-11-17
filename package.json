@@ -27,14 +27,14 @@
     "e2e:synth-launch": "node scripts/e2e-synth-launch.mjs",
     "e2e:tracking": "node scripts/e2e-tracking.mjs",
     "quest:live": "node scripts/quest-live.mjs",
-    "test:quest-live": "node --test scripts/lib/mjpeg.test.mjs scripts/lib/quest-live.test.mjs"
+    "test:quest-live": "node --test scripts/lib/mjpeg.test.mjs scripts/lib/quest-live.test.mjs",
+    "typescript": "^7.0.2"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
     "concurrently": "^10.0.6",
     "playwright-core": "^1.64.1",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
     "vitest": "^5.0.5"
   }
 }
